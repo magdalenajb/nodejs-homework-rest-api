@@ -1,7 +1,8 @@
 const express = require("express");
-const { auth, validation } = require("../middlewares");
+const { auth, validation, validateUpload } = require("../middlewares");
 const router = express.Router();
 const usersTask = require("../controller/usersController");
+const multerTasks = require("../controller/multerController");
 const { joiSignupSchema, joiLoginSchema, joiSubscriptionSchema } = require("../service/schemas/userSchema");
 
 router.get("/", usersTask.listUsers);
@@ -14,6 +15,8 @@ router.get("/current", auth, usersTask.getCurrent);
 
 router.get("/logout", auth, usersTask.logOut);
 
-router.patch("/update-subscription/:userId", auth, validation(joiSubscriptionSchema), usersTask.updateSubscriptionUser);
+router.patch("/update-subscription/:userId", auth, validation(joiSubscriptionSchema), usersTask.updateStatusUser);
+
+router.patch("/avatars", auth, validateUpload, multerTasks)
 
 module.exports = router;

@@ -28,6 +28,14 @@ const updateSubscriptionUser = async (id, subscription) => {
     );
 };
 
+const updateAvatarUser = async(id, avatarURL) => {
+    return User.findByIdAndUpdate(
+        { _id: id },
+        { avatarURL },
+        { new: true }
+    );
+};
+
 module.exports = {
     listUsers,
     userSignUp,
@@ -35,4 +43,5 @@ module.exports = {
     userLogOut,
     updateStatusUser,
     updateSubscriptionUser,
+    updateAvatarUser
 };
