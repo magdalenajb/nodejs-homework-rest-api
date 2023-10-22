@@ -36,6 +36,14 @@ const updateAvatarUser = async(id, avatarURL) => {
     );
 };
 
+const findByVerificationToken = async (verificationToken) => {
+    return User.findOne({ verificationToken });
+};
+
+const findByEmail = async (email) => {
+    return User.findOne({ email });
+};
+
 module.exports = {
     listUsers,
     userSignUp,
@@ -43,5 +51,7 @@ module.exports = {
     userLogOut,
     updateStatusUser,
     updateSubscriptionUser,
-    updateAvatarUser
+    updateAvatarUser,
+    findByVerificationToken,
+    findByEmail,
 };
